@@ -1,12 +1,9 @@
 package get_request;
 
-import base_url.JsonplaceholderBaseUrl;
+import base_urls.JsonplaceholderBaseUrl;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import netscape.javascript.JSObject;
-import org.json.JSONObject;
-import org.junit.Assert;
 import org.junit.Test;
 import org.testng.asserts.SoftAssert;
 

@@ -1,6 +1,6 @@
 package get_request;
 
-import base_url.AutomationBaseUrl;
+import base_urls.AutomationBaseUrl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
@@ -70,5 +70,39 @@ public class homeOdev_01 extends AutomationBaseUrl {
 
     }
 
-}
+    @Test
+    public void get2() {
 
+        //Set the url
+        spec.pathParams("first", "productsList");
+//Set the expected Data
+
+        //Set request data and the response data
+
+        Response response = given().spec(spec).when().get("/{first}");
+//response.prettyPrint();
+
+//Do assertion
+        JsonPath jsonPath = response.jsonPath();
+        SoftAssert softAssert = new SoftAssert();
+
+        assertEquals(200, response.statusCode());
+        assertEquals("text/html; charset=utf-8", response.getContentType());
+        assertEquals("HTTP/1.1 200 OK", response.getStatusLine());
+        List<String> women = jsonPath.getList("products.category.usertype.findAll{it.usertype=='Women'}.usertype");
+        System.out.println("women = " + women);
+        softAssert.assertEquals(12, women.size(),"Women sayisi 12'ye esit degil");
+
+        List<String> men = jsonPath.getList("products.category.usertype.findAll{it.usertype=='Men'}.usertype");
+        System.out.println("men = " + men);
+        softAssert.assertEquals(9, men.size(),"Men sayisi 9'a esit degil");
+
+        List<String> kids = jsonPath.getList("products.category.usertype.findAll{it.usertype=='Kids'}.usertype");
+        System.out.println("kids = " + kids);
+        softAssert.assertEquals(13, kids.size(),"Kids saysi 13'e esit degil");
+
+        softAssert.assertAll();
+
+
+    }
+}
