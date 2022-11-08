@@ -48,7 +48,7 @@ And
 
         System.out.println("bookingDatesPojo = " + bookingDatesPojo);
 
-        BookingPojo bookingPojo=new BookingPojo("Fabio","Colque","Breakfast",111,true,bookingDatesPojo);
+        BookingPojo bookingPojo=new BookingPojo("Fabio","Colque",111,true,bookingDatesPojo,"Breakfast");
         System.out.println("bookingPojo = " + bookingPojo);
 
        //Send the request and the response data

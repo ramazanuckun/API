@@ -1,22 +1,19 @@
 package pojos;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BookingPojo {
 
 
     private String firstname;
     private String lastname;
-    private String additionalneeds;
     private Integer totalprice;
     private Boolean depositpaid;
     private BookingDatesPojo bookingdates;
+    private String additionalneeds;
 
-    public BookingPojo(String firstname, String lastname, String additionalneeds, Integer totalprice, Boolean depositpaid, BookingDatesPojo bookingdates) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.additionalneeds = additionalneeds;
-        this.totalprice = totalprice;
-        this.depositpaid = depositpaid;
-        this.bookingdates = bookingdates;
+    public BookingPojo() {
     }
 
     public String getFirstname() {
@@ -33,14 +30,6 @@ public class BookingPojo {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public String getAdditionalneeds() {
-        return additionalneeds;
-    }
-
-    public void setAdditionalneeds(String additionalneeds) {
-        this.additionalneeds = additionalneeds;
     }
 
     public Integer getTotalprice() {
@@ -67,7 +56,12 @@ public class BookingPojo {
         this.bookingdates = bookingdates;
     }
 
-    public BookingPojo() {
+    public String getAdditionalneeds() {
+        return additionalneeds;
+    }
+
+    public void setAdditionalneeds(String additionalneeds) {
+        this.additionalneeds = additionalneeds;
     }
 
     @Override
@@ -75,10 +69,19 @@ public class BookingPojo {
         return "BookingPojo{" +
                 "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", additionalneeds='" + additionalneeds + '\'' +
                 ", totalprice=" + totalprice +
                 ", depositpaid=" + depositpaid +
                 ", bookingdates=" + bookingdates +
+                ", additionalneeds='" + additionalneeds + '\'' +
                 '}';
+    }
+
+    public BookingPojo(String firstname, String lastname, Integer totalprice, Boolean depositpaid, BookingDatesPojo bookingdates, String additionalneeds) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.totalprice = totalprice;
+        this.depositpaid = depositpaid;
+        this.bookingdates = bookingdates;
+        this.additionalneeds = additionalneeds;
     }
 }

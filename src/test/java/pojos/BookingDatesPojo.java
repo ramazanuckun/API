@@ -1,8 +1,10 @@
 package pojos;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BookingDatesPojo {
 
 
