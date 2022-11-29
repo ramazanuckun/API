@@ -1,23 +1,37 @@
 package GmiBank;
 
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
 public class GmiBank_tokenAlma {
-    @Test
-    public void name() {
 
-        String url="https://www.gmibank.com/api/tp-customers";
+    public static String genereteToken(){
 
 
-        String token="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXRjaDgxIiwiYXV0aCI6IlJPTEVfQURNSU4iLCJleHAiOjE2NzAwMDQyNzd9.ZGNWLPbWqtl2htNVkOWTgF_KHJOXFJX8Z0sUFSK66KGccFrMD9TR15xJWZE3FdsVZISELbrYhg3j4nfO0YsSWQ";
+        String username="Batch81";
+        String pasword="Batch81+";
 
-        Response response=given().headers("Authorization","Bearer "+token).when().get(url);
-response.prettyPrint();
+        Map<String,Object>postBody=new HashMap<>();
+        postBody.put("username",username);
+        postBody.put("pasword",pasword);
+        postBody.put("renemberMe",true);
+
+        String endPoint = "https://www.gmibank.com/api/authenticate";
+Response response=given().contentType(ContentType.JSON).body(postBody).when().post(endPoint);
+        JsonPath token=response.jsonPath();
+        return token.getString("id_token");
 
 
     }
-}
+
+    }
+
+

@@ -4,7 +4,8 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-import static utils.Authenticcotion.generateToken;
+import static utils.Authentication.generateToken;
+
 
 public class GmiBank_TokenAlmaMethodIle {
 
